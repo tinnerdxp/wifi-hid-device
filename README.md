@@ -18,10 +18,6 @@ The reason I wanted this is due to my set up at home and at work, I keep all the
 - Scan your wifi or login to your router to check what IP it got
 - Navigate to http://192.168.x.y - this runs on HTTP and default port 80 - so you might want to allow your browser to do that
 - Enjoy
-- If you want a case - there are plenty of options:
--- https://www.thingiverse.com/thing:6841853
--- https://www.etsy.com/uk/listing/1684164723/esp32-s2-mini-case
--- https://www.printables.com/model/541368-case-for-esp32-s2-mini-and-ld2410c
 
 ### This is my first public repo - so if you need any support - CoPilot is probably your best bet as I don't know much "C" afterall...
 
@@ -29,6 +25,11 @@ The reason I wanted this is due to my set up at home and at work, I keep all the
 
 ![Keyboard screen](keyboard-screen.jpg)
 ![Mouse screen](mouse-screen.jpg)
+
+### If you want a case - there are plenty of options:
+-- https://www.thingiverse.com/thing:6841853
+-- https://www.etsy.com/uk/listing/1684164723/esp32-s2-mini-case
+-- https://www.printables.com/model/541368-case-for-esp32-s2-mini-and-ld2410c
 
 ---
 
