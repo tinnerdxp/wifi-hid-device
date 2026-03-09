@@ -1,0 +1,22 @@
+# Build output directories (Arduino IDE & PlatformIO)
+.pio/
+.pioenvs/
+.piolibdeps/
+build/
+
+# PlatformIO project cache
+.piopm
+
+# Arduino IDE temp files
+*.elf
+*.bin
+*.hex
+*.map
+
+# macOS metadata
+.DS_Store
+
+# Editor
+.vscode/
+*.swp
+*~
