@@ -5,6 +5,22 @@ The ESP32-S2 Mini presents itself to the host as two independent USB HID devices
 
 ---
 
+All of the code in this repository was written by CoPilot using Sonnet 4.6. It was built in literally couple of hours with maybe 3-4 prompts in between.
+The reason I wanted this is due to my set up at home and at work, I keep all the hardware in one place of the house that is not easily accessible most of the time and putting a screen / keyboard / mouse is not always an option. Same for work - we do some Android testing and sometimes it's easier to plugin something small directly into a phone/tablet/pc rather than look around for a spare keyboard and spare USB port.
+
+## What you need:
+- Buy one of these: https://www.aliexpress.com/item/1005008222967786.html
+- plug it in
+- install Arduino / PlatformIO on your local
+- Flash the board with the code
+- Connect your phone to a new WiFi access point (details in src/config.h file)
+- Reboot the board by either unplugging it for a sec or by pressing RST button.
+- Scan your wifi or login to your router to check what IP it got
+- Navigate to http://192.168.x.y - this runs on HTTP and default port 80 - so you might want to allow your browser to do that
+- Enjoy
+
+---
+
 ## Features
 
 | Feature | Details |
