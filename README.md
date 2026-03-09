@@ -27,9 +27,9 @@ The reason I wanted this is due to my set up at home and at work, I keep all the
 ![Mouse screen](mouse-screen.jpg)
 
 ### If you want a case - there are plenty of options:
--- https://www.thingiverse.com/thing:6841853
--- https://www.etsy.com/uk/listing/1684164723/esp32-s2-mini-case
--- https://www.printables.com/model/541368-case-for-esp32-s2-mini-and-ld2410c
+- https://www.thingiverse.com/thing:6841853
+- https://www.etsy.com/uk/listing/1684164723/esp32-s2-mini-case
+- https://www.printables.com/model/541368-case-for-esp32-s2-mini-and-ld2410c
 
 ---
 
