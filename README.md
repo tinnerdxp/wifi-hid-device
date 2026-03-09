@@ -19,6 +19,13 @@ The reason I wanted this is due to my set up at home and at work, I keep all the
 - Navigate to http://192.168.x.y - this runs on HTTP and default port 80 - so you might want to allow your browser to do that
 - Enjoy
 
+### This is my first public repo - so if you need any support - CoPilot is probably your best bet as I don't know much "C" afterall...
+
+### No - the keyboard is not responsive.
+
+![Keyboard screen](keyboard-screen.jpg)
+![Mouse screen](mouse-screen.jpg)
+
 ---
 
 ## Features
