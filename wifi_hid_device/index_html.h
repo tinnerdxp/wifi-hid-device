@@ -96,6 +96,17 @@ button.sec{padding:7px 14px;background:var(--primary);border:none;border-radius:
 .sb{padding:8px 22px;background:var(--key-bg);border:1px solid var(--border);
   border-radius:6px;color:var(--text);cursor:pointer;touch-action:none;user-select:none;}
 .sb.pr{background:var(--key-act);}
+/* settings panel */
+.wifi-info-card{background:var(--surface);border:1px solid var(--border);
+  border-radius:8px;padding:14px 16px;margin-bottom:14px;}
+.wi-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;
+  border-bottom:1px solid var(--border);}
+.wi-row:last-child{border-bottom:none;}
+.wi-lbl{font-size:12px;color:#aaa;}
+.wi-val{font-size:14px;font-weight:600;}
+.wi-hint{font-size:13px;color:#aaa;line-height:1.5;margin-bottom:16px;}
+.wi-reset{background:var(--err);width:100%;padding:12px;margin-bottom:10px;}
+#wi-status{font-size:13px;color:var(--warn);min-height:18px;}
 </style>
 </head>
 <body>
@@ -108,6 +119,7 @@ button.sec{padding:7px 14px;background:var(--primary);border:none;border-radius:
 <div class="tabs">
   <button class="tb on"  onclick="showTab('kb',this)">&#x2328; Keyboard</button>
   <button class="tb"     onclick="showTab('ms',this)">&#x1F5B1; Mouse</button>
+  <button class="tb"     onclick="showTab('wifi',this)">&#x2699; Settings</button>
 </div>
 
 <!-- ═══ KEYBOARD PANEL ═══════════════════════════════════════════════════════ -->
@@ -283,6 +295,21 @@ button.sec{padding:7px 14px;background:var(--primary);border:none;border-radius:
   </div>
 </div>
 
+<!-- ═══ SETTINGS PANEL ═══════════════════════════════════════════════════════ -->
+<div id="panel-wifi" class="panel">
+  <div class="wifi-info-card">
+    <div class="wi-row"><span class="wi-lbl">Network</span><span id="wi-ssid" class="wi-val">&#x2014;</span></div>
+    <div class="wi-row"><span class="wi-lbl">IP address</span><span id="wi-ip" class="wi-val">&#x2014;</span></div>
+  </div>
+  <p class="wi-hint">To connect to a different network, reset WiFi credentials below.
+     The device will reboot into setup mode and create the <b>ESP32-HID-Setup</b> access
+     point so you can enter new credentials from your mobile.</p>
+  <button class="act wi-reset" id="wifiResetBtn" onclick="doWifiReset()">
+    &#x1F504; Reset WiFi &amp; Re-pair
+  </button>
+  <div id="wi-status"></div>
+</div>
+
 </div><!-- #app -->
 
 <script>
@@ -307,6 +334,7 @@ function showTab(name, el) {
   document.querySelectorAll('.tb').forEach(b => b.classList.remove('on'));
   document.getElementById('panel-' + name).classList.add('on');
   el.classList.add('on');
+  if (name === 'wifi') loadWifiInfo();
 }
 
 // ── Text send ─────────────────────────────────────────────────────────────────
@@ -531,6 +559,28 @@ function stopScroll() { clearInterval(scrIv); scrIv = null; }
   el.addEventListener('pointerup',     () => { el.classList.remove('pr'); stopScroll(); });
   el.addEventListener('pointercancel', () => { el.classList.remove('pr'); stopScroll(); });
 });
+
+// ── WiFi settings ─────────────────────────────────────────────────────────────
+function loadWifiInfo() {
+  fetch('/wifi-info')
+    .then(r => r.json())
+    .then(d => {
+      document.getElementById('wi-ssid').textContent = d.ssid || '\u2014';
+      document.getElementById('wi-ip').textContent   = d.ip   || '\u2014';
+    })
+    .catch(() => {});
+}
+function doWifiReset() {
+  if (!confirm('Reset WiFi credentials?\n\nThe device will reboot into setup mode.\nYou will need to reconnect to "ESP32-HID-Setup" and enter new credentials.')) return;
+  const btn = document.getElementById('wifiResetBtn');
+  const st  = document.getElementById('wi-status');
+  btn.disabled  = true;
+  st.textContent = '\u23F3 Resetting\u2026';
+  fetch('/wifi-reset', {method:'POST'})
+    .then(r => r.text())
+    .then(t => { st.textContent = '\u2714 ' + t; })
+    .catch(() => { st.textContent = 'Error — please try again.'; btn.disabled = false; });
+}
 
 // ── Boot ──────────────────────────────────────────────────────────────────────
 connect();
